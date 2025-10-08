@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TNTU", "TNTU\TNTU.csproj", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TNTU.Async", "TNTU.Async\TNTU.Async.csproj", "{9C47CB5D-1824-4ADF-BC22-3D2EA2C4C854}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TNTU.PropsExt", "TNTU.PropsExt\TNTU.PropsExt.csproj", "{550FEB7F-B176-4F52-A671-BC8FE85FF54C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{9C47CB5D-1824-4ADF-BC22-3D2EA2C4C854}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9C47CB5D-1824-4ADF-BC22-3D2EA2C4C854}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9C47CB5D-1824-4ADF-BC22-3D2EA2C4C854}.Release|Any CPU.Build.0 = Release|Any CPU
+		{550FEB7F-B176-4F52-A671-BC8FE85FF54C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{550FEB7F-B176-4F52-A671-BC8FE85FF54C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{550FEB7F-B176-4F52-A671-BC8FE85FF54C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{550FEB7F-B176-4F52-A671-BC8FE85FF54C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

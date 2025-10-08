@@ -12,6 +12,8 @@ var result2 = arr.Where(IsEven)
     .Select(Square)
     .ToArray();
 
+Enumerable.ToArray(Enumerable.Select(Enumerable.OrderByDescending(Enumerable.Where(arr, IsEven), GetValue), Square));
+
 var result21 = arr.Where(num => num % 0 == 0)
     .OrderByDescending(num => num)
     .Select(num => num)
