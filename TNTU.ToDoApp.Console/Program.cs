@@ -1,60 +1,57 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.VisualBasic;
-using TNTU.ToDoApp.Data;
-using TNTU.ToDoApp.Data.Models;
+﻿using TNTU.ToDoApp.Data;
+using TNTU.ToDoApp.Domain.Services;
+
+var context = new ToDoContext(/* DbContextOptions here */);
+var service = new ToDoItemsService(
+    context, 
+    new MockCurrentUserService());
 
 
-//var user = new User
-//{
-//    Name = "John Doe 2",
-//    ToDoItems = new List<ToDoItem>
-//    {
-//        new ToDoItem
-//        {
-//            Description = "Buy many groceries",
-//            IsCompleted = false,
-//            DueDate = DateTime.Now.AddDays(1)
-//        }
-//    }
-//};
+// CRUD Operations Example
+var newItem = new TNTU.ToDoApp.Data.Models.ToDoItem
+{
+    Description = "Finish the project",
+    IsCompleted = false,
+    DueDate = DateTime.Now.AddDays(7)
+};
+await service.AddToDoItemAsync(newItem);
 
+var items = await service.GetUserToDoItemsAsync();
+foreach (var item in items)
+{
+    Console.WriteLine($"{item.Id}: {item.Description} - Completed: {item.IsCompleted}");
+}
 
-var context = new ToDoContext();
+newItem.IsCompleted = true;
+await service.UpdateToDoItemAsync(newItem);
 
-int user1Id = 1;
+await service.DeleteToDoItemAsync(newItem.Id);
+Console.WriteLine("Operations completed.");
 
-var itemsGouped = await context.ToDoItems
-    .Include(t => t.User)
-    .Select(x => new
-    {
-        UserId = x.GreatUserId,
-        x.Description,
-        IsOverdueOnDb = !x.IsCompleted && x.DueDate.HasValue && x.DueDate.Value < DateTime.Now,
-        IsOverdue = x.IsOverdue()
-    })
-    .ToListAsync();
-
-
-var user1 = await context.Users
-    .Include(u => u.ToDoItems)
-    .FirstOrDefaultAsync(x => x.Id == user1Id);
-
-var descriptions = user1?.ToDoItems?.Select(t => t.Description).ToList();
-
-var items = await context.ToDoItems
-    .Where(t => !t.IsCompleted && t.DueDate.HasValue && t.DueDate.Value < DateTime.Now)
-    .Select(t => new
-    {
-        t.Id,
-        t.Description,
-        t.DueDate,
-        UserName = t.User.Name,
-        AlreadyExist = descriptions.Any(ut => ut == t.Description)
-    })
-    .ToListAsync();
-
-var todoItem1 = user1?.ToDoItems?.FirstOrDefault();
-todoItem1!.IsCompleted = false;
-
-await context.SaveChangesAsync();
 ;
+try
+{
+    // Simulate some operations that may throw exceptions
+    throw new InvalidOperationException("Simulated exception for demonstration.");
+}
+catch (Exception ex)
+{
+    var ex1 = (InvalidOperationException)ex;
+
+    InvalidOperationException? ex2 = ex as InvalidOperationException;
+    if (ex2 is not null)
+    {
+        Console.WriteLine($"An error occurred: {ex2.Message}");
+    }
+
+    bool isEx3 = ex is InvalidOperationException ex3; 
+    if (isEx3)
+    {
+        //Console.WriteLine($"An error occurred: {ex3.Message}");
+    }
+
+    if (ex is InvalidOperationException)
+    {
+        Console.WriteLine($"An error occurred: {ex.Message}");
+    }
+}

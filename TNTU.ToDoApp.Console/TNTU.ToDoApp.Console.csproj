@@ -16,6 +16,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\TNTU.ToDoApp.Data\TNTU.ToDoApp.Data.csproj" />
+    <ProjectReference Include="..\TNTU.ToDoApp.Domain\TNTU.ToDoApp.Domain.csproj" />
   </ItemGroup>
 
 </Project>

@@ -20,7 +20,8 @@ public class ToDoContext : DbContext
         if (!optionsBuilder.IsConfigured)
         {
             optionsBuilder.UseSqlServer("Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=ToDoAppDb;Integrated Security=True;Connect Timeout=30;Encrypt=False;Trust Server Certificate=False;Application Intent=ReadWrite;Multi Subnet Failover=False")
-                .LogTo(Console.WriteLine);
+                //.LogTo(Console.WriteLine)
+                ;
         }
     }
 
