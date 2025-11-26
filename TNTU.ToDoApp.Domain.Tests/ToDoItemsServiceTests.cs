@@ -33,6 +33,7 @@ public class ToDoItemsServiceTests
         var userId = 1;
         var mockUserService = new Mock<ICurrentUserService>();
         mockUserService.Setup(x => x.UserId).Returns(userId);
+
         var context = GetDbContextWithData(new List<ToDoItem>(), new List<User>());
         var service = new ToDoItemsService(context, mockUserService.Object);
         var updateDto = new UpdateItemDto { Id = 99, Description = "desc", IsCompleted = false, DueDate = DateTime.Now };

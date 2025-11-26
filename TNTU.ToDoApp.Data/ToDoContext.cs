@@ -9,21 +9,24 @@ public class ToDoContext : DbContext
 
     public DbSet<ToDoItem> ToDoItems { get; set; }
 
-
-
-    //public ToDoContext(DbContextOptions<ToDoContext> options) : base(options)
-    //{
-    //}
-
-    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+    public ToDoContext() : base()
     {
-        if (!optionsBuilder.IsConfigured)
-        {
-            optionsBuilder.UseSqlServer("Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=ToDoAppDb;Integrated Security=True;Connect Timeout=30;Encrypt=False;Trust Server Certificate=False;Application Intent=ReadWrite;Multi Subnet Failover=False")
-                //.LogTo(Console.WriteLine)
-                ;
-        }
+        
     }
+
+    public ToDoContext(DbContextOptions<ToDoContext> options) : base(options)
+    {
+    }
+
+    //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+    //{
+    //    if (!optionsBuilder.IsConfigured)
+    //    {
+    //        optionsBuilder.UseSqlServer("Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=ToDoAppDb;Integrated Security=True;Connect Timeout=30;Encrypt=False;Trust Server Certificate=False;Application Intent=ReadWrite;Multi Subnet Failover=False")
+    //            //.LogTo(Console.WriteLine)
+    //            ;
+    //    }
+    //}
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
